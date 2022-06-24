@@ -1,0 +1,686 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: hsl(170, 100%, 26%);
+  --headline: hsl(210, 11%, 15%);
+  --paragraph: hsl(210, 9%, 31%);
+  --brand-beige: hsl(39, 100%, 97%);
+  --brand-light: hsl(148, 23%, 89%);
+  --brand-light-2: hsl(200, 14%, 97%);
+  --bg-light: hsl(180, 14%, 97%);
+  --brand-button-hover: hsl(170, 100%, 14%);
+  --nav-height: 7.2rem;
+
+  font-size: 62.5%;
+}
+
+html {
+  scroll-behavior: smooth; /* Rolar o Mouse Suavelmente */
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+section {
+  padding-block: 10rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 3.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  max-width: 100%;
+}
+
+section header h4 {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  line-height: 150%;
+  font-weight: 700;
+
+  margin-bottom: 1.6rem;
+}
+
+section header h2 {
+  font-size: 3rem;
+  line-height: 3.9rem;
+  color: var(--headline);
+}
+
+section header h1 {
+  font-size: 3.4rem;
+  color: var(--headline);
+  line-height: 130%;
+  margin-bottom: 2.4rem;
+}
+
+section .content p {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 150%;
+  color: var(--paragraph);
+}
+.button {
+  background: var(--primary-color);
+  border: none;
+  border-radius: 4rem;
+  margin-bottom: 6rem;
+
+  padding: 1.6rem 3.2rem;
+  width: fit-content; /*  adaptar a largura, 
+    ao conteúdo dentro do button*/
+
+  color: #fff;
+
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+
+  text-decoration: none;
+  transition: background 200ms;
+}
+
+.button:hover {
+  background: var(--brand-button-hover);
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  font-family: "DM Sans";
+  font-size: 1.6rem;
+  text-align: center;
+  overflow: overlay;
+  background: var(--bg-light);
+}
+
+/* ======== Navegation ================*/
+nav {
+  display: flex;
+  /*padding: 1.6rem 2.4rem;*/
+
+  height: var(--nav-height);
+
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 100;
+}
+nav div.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav.scroll {
+  background: var(--primary-color);
+}
+
+nav.scroll .logo path {
+  fill: white;
+}
+
+nav.scroll button path {
+  stroke: white;
+}
+
+nav button {
+  background: none;
+  cursor: pointer;
+  border: none;
+}
+
+/* ========== Menu-Expanded =======*/
+.menu {
+  transform: translateY(100%); /* Animação no menu de vir baixa para cima */
+}
+
+.menu,
+.close-menu,
+body.menu-expanded .open-menu {
+  opacity: 0;
+  visibility: hidden;
+}
+body.menu-expanded .menu,
+body.menu-expanded button.close-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.menu-expanded .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--primary-color);
+
+  width: 100vw;
+  height: 100vh;
+
+  padding-top: var(--nav-height);
+  transition: transform 300ms; /* Animação no menu de vir baixa para cima */
+  transform: translateY(0); /* Animação no menu de vir baixa para cima */
+}
+
+body.menu-expanded {
+  overflow: hidden; /* Esconder a barrar do scroll */
+}
+.menu ul:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+  margin-top: 6rem;
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 3.1rem;
+}
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.menu .button {
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  background: white;
+  border-radius: 4rem;
+  color: var(--primary-color);
+  display: inline-block;
+
+  margin-top: 4.8rem;
+  margin-bottom: 8rem;
+  padding: 1.6rem 3.2rem;
+}
+
+.menu .button:hover {
+  background-color: var(--primary-color);
+  color: white;
+  filter: brightness(1.1); /*colocar um brilho a mais*/
+}
+
+body.menu-expanded .logo,
+body.menu-expanded nav button {
+  position: relative;
+  z-index: 1;
+}
+body.menu-expanded > :not(nav) {
+  visibility: hidden; /* Esconder os elementos */
+  /*display: none; Apaagar todos os elementos da tela*/
+}
+
+body.menu-expanded .logo path {
+  fill: white;
+}
+
+body.menu-expanded button path {
+  stroke: white;
+}
+
+#home::before {
+  content: "";
+  width: 100%;
+  height: calc(118rem + var(--nav-height));
+  display: block;
+  background: var(--brand-light);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /*faz o elemento ir por traz*/
+}
+
+/* Header*/
+
+.wrapper {
+  width: 37.5rem;
+  margin-inline: auto;
+  padding-inline: 2.4rem;
+}
+
+#home {
+  padding-block: 0;
+  padding-top: calc(4.1rem + var(--nav-height));
+}
+
+#home p {
+  font-size: 1.8rem;
+  line-height: 150%;
+  font-weight: 400;
+  color: var(--paragraph);
+  margin-bottom: 3.2rem;
+}
+
+#home img {
+  width: 26.4rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-position: 0px 2rem;
+}
+#home .button {
+  margin-inline: auto;
+}
+
+.stats {
+  width: 100%;
+  padding-block: 4rem;
+  margin-inline: auto;
+
+  background: var(--brand-beige);
+  border: 1px solid var(--brand-light);
+  border-radius: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6rem;
+}
+
+.stat p {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 1.6rem;
+  line-height: 150%;
+}
+
+.stat h3 {
+  font-size: 4.8rem;
+  color: var(--headline);
+  line-height: 130%;
+  margin-bottom: 0.4rem;
+}
+
+/*========= Services =========*/
+
+#services header h4 {
+  font-size: 1.4rem;
+  line-height: 150%;
+  letter-spacing: 0.8rem;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: 1.6rem;
+}
+
+#services header h2 {
+  margin-bottom: 6rem;
+}
+
+#services .cards {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+#services .card {
+  padding: 2rem;
+  text-align: left;
+  box-sizing: border-box;
+  border-radius: 0.6rem;
+  border: 1px solid var(--brand-light);
+  background: white;
+}
+#services .card h3 {
+  margin-block: 1.6rem;
+}
+
+/* ======== ABOUT ===========*/
+#about {
+  text-align: left;
+  background-color: var(--brand-beige);
+}
+
+#about header h2 {
+  margin-bottom: 2.4rem;
+}
+
+#about .content p {
+  margin-top: 2.4rem;
+  margin-bottom: 6rem;
+}
+
+/* ======== Contact =============*/
+
+#contact {
+  text-align: left;
+}
+
+#contact header {
+  margin-bottom: 3.2rem;
+}
+
+#contact ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  margin-bottom: 3.2rem;
+}
+
+#contact ul li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/*========Footer ======*/
+
+footer {
+  background: var(--primary-color);
+  padding-block: 6rem;
+  text-align: left;
+  color: white;
+}
+
+footer .logo svg {
+  width: 23.6rem;
+  height: 3.1rem;
+}
+
+footer .logo {
+  display: inline-block;
+  margin-bottom: 2.4rem;
+}
+
+footer .logo path {
+  fill: white;
+}
+
+footer p {
+  color: var(--brand-beige);
+  line-height: 2;
+  margin-bottom: 3.2rem;
+}
+
+footer .social-links {
+  justify-content: flex-start;
+}
+
+/*BacktoTop*/
+
+#backTopButton {
+  position: fixed;
+  bottom: 1rem;
+  right: 2.5rem;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10%);
+  transition: 200ms;
+}
+
+#backTopButton.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Ponto de quebra. RESPONSIVO */
+@media (min-width: 1024px) {
+  /*Global*/
+
+  body {
+    overflow: auto;
+  }
+  .wrapper {
+    width: min(112rem, 100%);
+    display: grid;
+  }
+
+  section {
+    padding-block: 16rem;
+  }
+
+  seection header h2 {
+    font-size: 4rem;
+    line-height: 5.2rem;
+  }
+  .col-a {
+    grid-area: A;
+  }
+  .col-b {
+    grid-area: B;
+  }
+
+  /* ========NAV=======*/
+
+  nav#navigation .wrapper * {
+    margin: 0;
+    padding: 0;
+    visibility: initial;
+    display: initial;
+    opacity: initial;
+    flex-direction: initial;
+    position: initial;
+    font-size: initial;
+    transform: initial;
+    color: initial;
+    background: initial;
+    font-weight: initial;
+    filter: initial;
+  }
+
+  nav#navigation .close-menu,
+  nav#navigation .open-menu,
+  nav#navigation .social-links {
+    display: none;
+  }
+
+  nav#navigation .menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+  }
+
+  nav#navigation .menu ul:nth-child(1) {
+    display: flex;
+    gap: 3.2rem;
+  }
+
+  nav#navigation .menu ul li a {
+    color: var(--primary-color);
+    opacity: 0.7;
+  }
+
+  nav#navigation .menu a.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 4rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    text-transform: uppercase;
+  }
+  nav#navigation .menu a.button:hover {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+  }
+
+  nav#navigation .menu li a.active::after,
+  nav#navigation .menu li a:hover::after {
+    padding-inline: 0.8rem;
+    width: 100%;
+  }
+
+  nav#navigation.scroll .menu li a.active,
+  nav#navigation.scroll .menu li a:hover {
+    opacity: 1;
+  }
+
+  nav#navigation.scroll .menu a.button.active,
+  nav#navigation.scroll .menu a.button:hover {
+    background-color: var(--primary-color);
+    filter: brightness(1.3);
+    border: none;
+  }
+
+  nav#navigation.scroll .menu ul li a {
+    color: var(--brand-light-2);
+    opacity: 0.6;
+  }
+  nav#navigation.scroll .menu a.button {
+    border-color: white;
+    color: white;
+  }
+  nav#navigation .menu li a.active,
+  nav#navigation .menu li a:hover {
+    opacity: 1;
+    font-weight: 700;
+  }
+
+  nav#navigation .menu li a {
+    transition: opacity 0.4s;
+  }
+
+  nav#navigation .menu li a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: var(--primary-color);
+    display: block;
+    position: relative;
+    bottom: -2rem;
+    left: -0.5rem;
+    transition: width 0.2s;
+  }
+
+  nav#navigation.scroll .menu li a::after {
+    background: white;
+  }
+
+  /*===========Home=============*/
+
+  #home {
+    padding-top: var(--nav-height);
+  }
+  #home::before {
+    height: calc(118% - var(--nav-height));
+  }
+  #home .wrapper {
+    grid-template-columns: 60.5rem 1fr;
+    grid-template-areas: "A B" " C C";
+  }
+  #home .col-a {
+    text-align: left;
+    align-self: center; /* Alinha o próprio elemento ao centro do display grid*/
+  }
+  #home .col-b {
+  }
+
+  #home h1 {
+    font-size: 5.1rem;
+  }
+
+  #home .content p {
+    font-size: 1.8rem;
+  }
+  #home .stats {
+    grid-area: C;
+    flex-direction: row;
+    padding: 6rem;
+    gap: 0;
+  }
+
+  #home .button {
+    margin: 0;
+  }
+
+  #home img {
+    width: 42rem;
+  }
+
+  #home .stats .stat + .stat {
+    /* Selecionar um elemento(A) que anterior a ele exista uma elemento(A) 
+    ou seja um elemento igual a ele */
+    border-left: 1px solid var(--primary-color);
+  }
+  #home .stats .stat {
+    flex: 1; /* Preencher a larguar igualmente*/
+  }
+
+  /*=========Services=======*/
+  #services h2 {
+    width: 47rem;
+    margin-inline: auto;
+  }
+
+  #services .cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+  #services .card {
+    width: 30%;
+    flex-grow: 1;
+  }
+  /* ==========ABOUT=======*/
+  #about .wrapper {
+    grid-template-columns: 48rem 1fr;
+    grid-template-areas: "B A";
+    gap: 6.7rem;
+  }
+  #about .col-a {
+    align-self: center;
+  }
+
+  #about .content p {
+    margin-bottom: 0;
+  }
+
+  #contact .wrapper {
+    grid-template-columns: 1fr 57.5rem;
+    grid-template-areas: "A B";
+  }
+
+  #contact h2 {
+    width: 40.4rem;
+  }
+
+  /*==========FOOTER=========*/
+  footer {
+    padding-block: 8rem;
+  }
+  footer .wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "A B";
+  }
+  footer .col-a {
+    align-self: center;
+  }
+
+  footer .col-b {
+    align-self: center;
+    justify-self: flex-end;
+  }
+
+  footer p {
+    margin-bottom: 0;
+  }
+}
